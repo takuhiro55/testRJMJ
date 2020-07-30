@@ -5,8 +5,8 @@ I took Character classes and AsciiArt from the original RJMJ and modified them s
 
 
 Some features:
-- Room arrangement are more easily changeable
-- The location of characters are changeable
+- Room arrangements are easily changeable
+- The locations of characters are easily changeable
 - Each class can take care actions such as "talkTo()" or "moveTo()" though interface, Game loop is simplified
 - Each class is more easily testable because they are loosely coupled
 - If you talk to same character more than one timem, the message is changed
