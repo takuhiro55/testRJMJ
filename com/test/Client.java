@@ -32,8 +32,9 @@ public class Client {
 
         /**
          * Define neighbor rooms
-         * - Kitchen [RIGHT : Library, LEFT : null]
-         * - Lab [RIGHT : Kitchen, LEFT : null]
+         * - Kitchen [RIGHT : LAB, LEFT : null]
+         * - Lab [RIGHT : BATHROOM, LEFT : KITCHEN]
+         * - Bathroom [Right : null, LEFT : LAB]
          * */
         // Kitchen
         EnumMap<Direction, RoomName> roomNeighbors_Kitchen = new EnumMap<>(Direction.class);
@@ -61,27 +62,32 @@ public class Client {
         Player player = new Player(RoomName.BATHROOM.getRoomInstance());
         Set<String> items = new HashSet<>();
 
+        // To Take user input
         Scanner type = new Scanner(System.in);
 
         /**
          * Game loop
          * */
-
         System.out.println(player.getCurrentRoom());
         while(true) {
+
+            //// Talk to a character in the room ////
             player.talkTo();
             items = player.getItems();
 
+            //// List up items ////
             System.out.println("//// Items ////");
             for (String item : items){
                 System.out.println(" " + item);
             }
             System.out.println();
 
+
+            //// Move to Different rooms /////
             while(true) {
                 System.out.println();
-                System.out.println("Type \"X\" for right");
-                System.out.println("Type \"Z\" for left");
+                System.out.println("Type \"x\" for right");
+                System.out.println("Type \"z\" for left");
                 if (type.nextLine().equals("x")){
                     System.out.println("Command to move RIGHT");
                     player.moveTo(Direction.RIGHT);

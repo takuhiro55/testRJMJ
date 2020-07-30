@@ -5,12 +5,11 @@ import com.test.Color;
 import java.util.Scanner;
 
 public class Zach implements Character, Color {
-    private int numCountTalked = 0;
+    private boolean talkedOnce = false;
     private String questionAnswer;
 
     @Override
     public String askTheQuestionAndCollectInput() throws InterruptedException {
-        numCountTalked++;
         String[] zachInput = null;
         String[] zachInput1 = {
                 ANSI_CYAN,
@@ -26,7 +25,7 @@ public class Zach implements Character, Color {
                 "Zach: \" I just bought a ticket for traveling with Dragon2. Would you like to come with me?",
                 ANSI_RESET
         };
-        if (numCountTalked == 1){
+        if (!talkedOnce){
             zachInput = zachInput1;
         }
         else{
@@ -46,13 +45,18 @@ public class Zach implements Character, Color {
     @Override
     public String processQuestionAnswer(String questionAnswer) {
         String result = "";
-        if (numCountTalked == 1) {
+        if (!talkedOnce) {
             if (questionAnswer.toUpperCase().equals("A")) {
+                talkedOnce = true;
                 System.out.println("Correct");
                 result = getItem();
             } else {
                 System.out.println("Incorrect, please try again.");
             }
+        }
+        else{
+            // Work around, so that you can take next actions -> result == "" recognizes as incorrect answer
+            result = getItem();
         }
         return result;
     }

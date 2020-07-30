@@ -5,13 +5,12 @@ import com.test.Color;
 import java.util.Scanner;
 
 public class Nelly implements Character, Color {
-    private int numCountTalked = 0;
+    private boolean talkedOnce = false;
     private String questionAnswer;
 
     @Override
     public String askTheQuestionAndCollectInput() throws InterruptedException {
 
-        numCountTalked++;
         String[] nellyInput = null;
 
         String[] nellyInput1 = {
@@ -28,7 +27,7 @@ public class Nelly implements Character, Color {
                 ANSI_RESET
         };
 
-        if (numCountTalked == 1){
+        if (!talkedOnce){
             nellyInput = nellyInput1;
         }
         else{
@@ -48,6 +47,7 @@ public class Nelly implements Character, Color {
     @Override
     public String processQuestionAnswer(String questionAnswer) {
         System.out.println(ANSI_CYAN + "Good Luck!" + ANSI_RESET);
+        talkedOnce = true;
         return getItem();
     }
 
