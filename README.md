@@ -5,13 +5,14 @@ I took Character classes from the original RJMJ and modified them slightly.
 
 
 Some features:
-- Room arrangements are changeable
+- Room arrangement are more easily changeable
 - The location of characters are changeable
 - Each class can take care actions such as "talkTo()" or "moveTo()" though interface, Game loop is simplified
 - Each class is more easily testable because they are loosely coupled
+- If you talk to same character more than one timem, the message is changed
 
 
-How it works
+How it works:
 Please look at "Client" in "com.test"
 1. Specify neighbor rooms with EnumMap<Direction, RoomName> 
   -> Both "Direction" and "RoomName" are Enum
