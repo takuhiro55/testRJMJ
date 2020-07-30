@@ -23,11 +23,5 @@ Please look at "Client" in "com.test"
 
 
 
-Room arrangement in this project
-/////////////////////////////////////////////////////
-/				/				  /					/
-/               /				  /					/
-/	 Kitchen    /		Lab       / 	Bathroom	/
-/				/				  /					/
-/				/				  /					/
-/////////////////////////////////////////////////////
+Room arrangement in this project:
+	Kitchen / Lab / Bathroom
