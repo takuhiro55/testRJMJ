@@ -1,7 +1,7 @@
 # testRJMJ
 
 This project is the test of decoupling RJMJ project. 
-I took Character classes from the original RJMJ and modified them slightly.
+I took Character classes and AsciiArt from the original RJMJ and modified them slightly.
 
 
 Some features:
@@ -21,3 +21,13 @@ Please look at "Client" in "com.test"
   When Room classes are instantiated, Character and neighbor rooms are set though the constructor.
 3. Instantiate Player with initial room where the player is in when the player starts playing the game
 
+
+
+Room arrangement in this project
+/////////////////////////////////////////////////////
+/				/				  /					/
+/               /				  /					/
+/	 Kitchen    /		Lab       / 	Bathroom	/
+/				/				  /					/
+/				/				  /					/
+/////////////////////////////////////////////////////
