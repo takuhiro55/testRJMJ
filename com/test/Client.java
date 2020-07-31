@@ -71,36 +71,39 @@ public class Client {
         System.out.println(player.getCurrentRoom());
         while(true) {
 
-            //// Talk to a character in the room ////
-            player.talkTo();
-            items = player.getItems();
+            System.out.println("\nWhat would you like to do?");
+            String typed = type.nextLine();
+            System.out.println("Typed : " +typed);
 
-            //// List up items ////
-            System.out.println("//// Items ////");
-            for (String item : items){
-                System.out.println(" " + item);
+
+            if (typed.equalsIgnoreCase("talk")){
+                //// Talk to a character in the room ////
+                player.talkTo();
             }
-            System.out.println();
+            else if (typed.equalsIgnoreCase("items")){
+                System.out.println("\"List items are selected\"");
+                items = player.getItems();
 
-
-            //// Move to Different rooms /////
-            while(true) {
+                //// List up items ////
+                System.out.println("//// Items ////");
+                for (String item : items){
+                    System.out.println(" " + item);
+                }
                 System.out.println();
-                System.out.println("Type \"x\" for right");
-                System.out.println("Type \"z\" for left");
-                if (type.nextLine().equals("x")){
-                    System.out.println("Command to move RIGHT");
-                    player.moveTo(Direction.RIGHT);
-                }
-                else{
-                    System.out.println("Command to move LEFT");
-                    player.moveTo(Direction.LEFT);
-                }
-
-                if (player.isMovedToNewRoomSuccessful()){
-                    break;
-                }
             }
+            else if(typed.equalsIgnoreCase("x")){
+                System.out.println("\"\"");
+                System.out.println("Command to move LEFT");
+                player.moveTo(Direction.LEFT);
+            }
+            else if(typed.equalsIgnoreCase("z")){
+                System.out.println("Command to move RIGHT");
+                player.moveTo(Direction.RIGHT);
+            }
+            else {
+                System.out.println("Command you typed could not be recognized");
+            }
+
         }
     }
 }
