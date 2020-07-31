@@ -60,49 +60,14 @@ public class Client {
          * Set Default initial room for a player
          * */
         Player player = new Player(RoomName.BATHROOM.getRoomInstance());
-        Set<String> items = new HashSet<>();
-
-        // To Take user input
-        Scanner type = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         /**
          * Game loop
          * */
-        System.out.println(player.getCurrentRoom());
+        //System.out.println(player.getCurrentRoom());
         while(true) {
-
-            System.out.println("\nWhat would you like to do?");
-            String typed = type.nextLine();
-            System.out.println("Typed : " +typed);
-
-
-            if (typed.equalsIgnoreCase("talk")){
-                //// Talk to a character in the room ////
-                player.talkTo();
-            }
-            else if (typed.equalsIgnoreCase("items")){
-                System.out.println("\"List items are selected\"");
-                items = player.getItems();
-
-                //// List up items ////
-                System.out.println("//// Items ////");
-                for (String item : items){
-                    System.out.println(" " + item);
-                }
-                System.out.println();
-            }
-            else if(typed.equalsIgnoreCase("x")){
-                System.out.println("\"\"");
-                System.out.println("Command to move LEFT");
-                player.moveTo(Direction.LEFT);
-            }
-            else if(typed.equalsIgnoreCase("z")){
-                System.out.println("Command to move RIGHT");
-                player.moveTo(Direction.RIGHT);
-            }
-            else {
-                System.out.println("Command you typed could not be recognized");
-            }
+            player.enter(player, scanner);
 
         }
     }

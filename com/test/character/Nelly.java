@@ -47,8 +47,16 @@ public class Nelly implements Character, Color {
     @Override
     public String processQuestionAnswer(String questionAnswer) {
         System.out.println(ANSI_CYAN + "Good Luck!" + ANSI_RESET);
+        String result = null;
         talkedOnce = true;
-        return getItem();
+        if (talkedOnce){
+            result = QAEnum.CORRECT.name();
+        }
+        else{
+            result = QAEnum.PASS.name();
+        }
+        //return getItem();
+        return result;
     }
 
     public String getQuestionAnswer() {

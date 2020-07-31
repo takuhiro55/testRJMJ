@@ -1,10 +1,12 @@
 package com.test.player;
 
+import com.test.character.QAEnum;
 import com.test.layout.Direction;
 import com.test.room.Room;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Player {
@@ -12,6 +14,7 @@ public class Player {
     private Set<String> items = new HashSet<>();
     private Room currentRoom;
     private boolean movedToNewRoomSuccessful = false;
+
 
     /**
      * Constructor
@@ -21,11 +24,19 @@ public class Player {
         currentRoom = initialRoom;
     }
 
+    public void enter(Player player, Scanner scanner) throws IOException, InterruptedException {
+        currentRoom.enter(player, scanner);
+    }
+
     /**
      *  Method used for talking to an instructor in the room
      * */
-    public void talkTo() throws IOException, InterruptedException {
-        items.add(currentRoom.talkToCharacter());
+    public String talkTo() throws IOException, InterruptedException {
+        return currentRoom.talkToCharacter();
+    }
+
+    public void registerItem(String item){
+        items.add(item);
     }
 
     /**
@@ -38,10 +49,10 @@ public class Player {
     public void moveTo(Direction direction){
         try {
             currentRoom = currentRoom.leaveRoomTo(direction);
-            currentRoom.displayRoomAsciiArt();
+            //currentRoom.displayRoomAsciiArt();
             System.out.println("Direction :" + direction);
 
-            System.out.println("Now you are in " + currentRoom);
+            System.out.println("Now you moved to " + currentRoom);
             movedToNewRoomSuccessful = true;
         }
         catch(NullPointerException e){
@@ -67,7 +78,7 @@ public class Player {
         return currentRoom;
     }
 
-    public Set<String> getItems() {
+    public Set<String> getListItems() {
         return items;
     }
 }

@@ -2,8 +2,10 @@ package com.test.room;
 
 import com.test.character.Character;
 import com.test.layout.Direction;
+import com.test.player.Player;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public interface Room {
 
@@ -11,7 +13,7 @@ public interface Room {
      * Entry point of the room
      * Under this method, each story in the room is written
      * */
-    public void enter();
+    public void enter(Player player, Scanner scanner) throws IOException, InterruptedException;
 
     /**
      * Method is used to talk to the instructor in the room

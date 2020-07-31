@@ -49,14 +49,17 @@ public class Zach implements Character, Color {
             if (questionAnswer.toUpperCase().equals("A")) {
                 talkedOnce = true;
                 System.out.println("Correct");
-                result = getItem();
+                result = QAEnum.CORRECT.name();
+                //result = getItem();
             } else {
                 System.out.println("Incorrect, please try again.");
+                result = QAEnum.INCORRECT.name();
             }
         }
         else{
             // Work around, so that you can take next actions -> result == "" recognizes as incorrect answer
-            result = getItem();
+            //result = getItem();
+            result = QAEnum.PASS.name();
         }
         return result;
     }

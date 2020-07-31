@@ -38,9 +38,10 @@ public class Jay implements Character, Color {
         String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
-            result = getItem();
+            result = "Correct";
         } else {
             System.out.println("Incorrect, please try again.");
+            result = "Incorrect";
         }
         return result;
     }

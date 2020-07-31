@@ -14,4 +14,6 @@ public interface Character {
     String askTheQuestionAndCollectInput() throws IOException, InterruptedException;
 
     String processQuestionAnswer(String questionAnswer) throws IOException, InterruptedException;
+
+    String getItem();
 }
