@@ -24,6 +24,11 @@ public class Kitchen implements Room{
         this.roomNeighbors = roomNeighbors;
     }
 
+    @Override
+    public void enter() {
+        System.out.println("Welcome to Kitchen!");
+    }
+
     /**
      * Method is used to talk to the instructor in the room
      * */

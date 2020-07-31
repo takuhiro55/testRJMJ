@@ -23,6 +23,11 @@ public class Lab implements Room{
         this.roomNeighbors = roomNeighbors;
     }
 
+    @Override
+    public void enter() {
+        System.out.println("Welcome to Lab!");
+    }
+
     /**
      * Method used to talk to the instructor in the room
      * */

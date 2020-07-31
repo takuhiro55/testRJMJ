@@ -23,6 +23,11 @@ public class Bathroom implements Room{
         this.roomNeighbors = roomNeighbors;
     }
 
+    @Override
+    public void enter() {
+        System.out.println("Welcome to Bathroom!");
+    }
+
     /**
      * Method is used to talk to the instructor in the room
      * */
