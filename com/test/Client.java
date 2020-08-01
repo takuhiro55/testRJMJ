@@ -4,22 +4,20 @@ package com.test;
 import com.test.character.Nelly;
 import com.test.character.Tom;
 import com.test.character.Zach;
-import com.test.layout.Direction;
+import com.test.layout.DirectionEnum;
 import com.test.player.Player;
 import com.test.room.Bathroom;
 import com.test.room.Kitchen;
 import com.test.room.Lab;
-import com.test.room.RoomName;
+import com.test.room.RoomNameEnum;
 
 import java.io.IOException;
 import java.util.EnumMap;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Client {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args){
 
         /**
          * This program can be put into other than psvm
@@ -37,35 +35,38 @@ public class Client {
          * - Bathroom [Right : null, LEFT : LAB]
          * */
         // Kitchen
-        EnumMap<Direction, RoomName> roomNeighbors_Kitchen = new EnumMap<>(Direction.class);
-        roomNeighbors_Kitchen.put(Direction.RIGHT, RoomName.LAB);
+        EnumMap<DirectionEnum, RoomNameEnum> roomNeighbors_Kitchen = new EnumMap<>(DirectionEnum.class);
+        roomNeighbors_Kitchen.put(DirectionEnum.RIGHT, RoomNameEnum.LAB);
 
         // Lab
-        EnumMap<Direction, RoomName> roomNeighbors_Lab = new EnumMap<>(Direction.class);
-        roomNeighbors_Lab.put(Direction.RIGHT, RoomName.BATHROOM);
-        roomNeighbors_Lab.put(Direction.LEFT, RoomName.KITCHEN);
+        EnumMap<DirectionEnum, RoomNameEnum> roomNeighbors_Lab = new EnumMap<>(DirectionEnum.class);
+        roomNeighbors_Lab.put(DirectionEnum.RIGHT, RoomNameEnum.BATHROOM);
+        roomNeighbors_Lab.put(DirectionEnum.LEFT, RoomNameEnum.KITCHEN);
 
         // Bathroom
-        EnumMap<Direction, RoomName> roomNeighbors_Bathroom = new EnumMap<>(Direction.class);
-        roomNeighbors_Bathroom.put(Direction.LEFT, RoomName.LAB);
+        EnumMap<DirectionEnum, RoomNameEnum> roomNeighbors_Bathroom = new EnumMap<>(DirectionEnum.class);
+        roomNeighbors_Bathroom.put(DirectionEnum.LEFT, RoomNameEnum.LAB);
+
+
 
         /**
          * Store instance of Rooms into Enum
          * */
-        RoomName.LAB.setRoomInstance(new Lab(new Nelly(), roomNeighbors_Lab));
-        RoomName.KITCHEN.setRoomInstance(new Kitchen(new Tom(), roomNeighbors_Kitchen));
-        RoomName.BATHROOM.setRoomInstance(new Bathroom(new Zach(), roomNeighbors_Bathroom));
+        RoomNameEnum.LAB.setRoomInstance(new Lab(new Nelly(), roomNeighbors_Lab));
+        RoomNameEnum.KITCHEN.setRoomInstance(new Kitchen(new Tom(), roomNeighbors_Kitchen));
+        RoomNameEnum.BATHROOM.setRoomInstance(new Bathroom(new Zach(), roomNeighbors_Bathroom));
+
+
 
         /**
          * Set Default initial room for a player
          * */
-        Player player = new Player(RoomName.BATHROOM.getRoomInstance());
+        Player player = new Player(RoomNameEnum.BATHROOM.getRoomInstance());
         Scanner scanner = new Scanner(System.in);
 
         /**
          * Game loop
          * */
-        //System.out.println(player.getCurrentRoom());
         while(true) {
             player.enter(player, scanner);
 

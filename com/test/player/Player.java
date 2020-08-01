@@ -1,7 +1,7 @@
 package com.test.player;
 
 import com.test.character.QAEnum;
-import com.test.layout.Direction;
+import com.test.layout.DirectionEnum;
 import com.test.room.Room;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class Player {
 
     private Set<String> items = new HashSet<>();
     private Room currentRoom;
-    private boolean movedToNewRoomSuccessful = false;
+    private boolean movedToNewRoomSuccessful = true;
 
 
     /**
@@ -24,14 +24,14 @@ public class Player {
         currentRoom = initialRoom;
     }
 
-    public void enter(Player player, Scanner scanner) throws IOException, InterruptedException {
+    public void enter(Player player, Scanner scanner) {
         currentRoom.enter(player, scanner);
     }
 
     /**
      *  Method used for talking to an instructor in the room
      * */
-    public String talkTo() throws IOException, InterruptedException {
+    public QAEnum talkTo() {
         return currentRoom.talkToCharacter();
     }
 
@@ -46,11 +46,10 @@ public class Player {
      * -> If no room available, it will generate "NullPointerException", so catch it
      *  and client needs to ask the player one more time
      * */
-    public void moveTo(Direction direction){
+    public void moveTo(DirectionEnum directionEnum){
         try {
-            currentRoom = currentRoom.leaveRoomTo(direction);
-            //currentRoom.displayRoomAsciiArt();
-            System.out.println("Direction :" + direction);
+            currentRoom = currentRoom.leaveRoomTo(directionEnum);
+            System.out.println("Direction :" + directionEnum);
 
             System.out.println("Now you moved to " + currentRoom);
             movedToNewRoomSuccessful = true;

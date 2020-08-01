@@ -2,14 +2,14 @@ package com.test.character;
 
 import com.test.Color;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Jay implements Character, Color {
+    private boolean talkedOnce = false;
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() throws IOException, InterruptedException {
+    public String askTheQuestionAndCollectInput() {
         String[] jayInput = {
                 ANSI_CYAN,
                 "Jay: \"What band is Jay playing in this video?\"",
@@ -20,28 +20,44 @@ public class Jay implements Character, Color {
                 ANSI_RESET
         };
 
-        String url_open = "https://www.youtube.com/watch?v=hyctW2abkY4";
-        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
-
-        for (String jay : jayInput) {
-            Thread.sleep(sleep);
-            System.out.println(jay);
+        try {
+            String url_open = "https://www.youtube.com/watch?v=hyctW2abkY4";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
+        }
+        catch(Exception e){
+            somethingWentWrong(e);
+            System.out.println("Look for \"java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));\"");
         }
 
+        try{
+            for (String jay : jayInput) {
+                Thread.sleep(SLEEP_DURATION);
+                System.out.println(jay);
+            }
+        }
+        catch(Exception e){
+            somethingWentWrong(e);
+            System.out.println("Look for \"Thread.sleep(sleep);\"");
+        }
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
         return getQuestionAnswer();
     }
 
+
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
-        String result = "";
-        if (questionAnswer.toUpperCase().equals("C")) {
-            System.out.println("Correct");
-            result = "Correct";
-        } else {
-            System.out.println("Incorrect, please try again.");
-            result = "Incorrect";
+    public QAEnum processQuestionAnswer(String questionAnswer) {
+        QAEnum result = null;
+        if (!talkedOnce) {
+            if (questionAnswer.toUpperCase().equals("C")) {
+                result = QAEnum.CORRECT;
+                talkedOnce = true;
+            } else {
+                result = QAEnum.INCORRECT;
+            }
+        }
+        else{
+            result = QAEnum.PASS;
         }
         return result;
     }
