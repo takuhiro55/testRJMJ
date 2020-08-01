@@ -22,7 +22,8 @@ How it works:
 
 
 How to play:
-When you go into each room, program ask you "What would you like to do?".
+You can execute this program from "Client" in "com.test".
+When you go into each room, the program ask you "What would you like to do?".
 Choose one word from below and type:
 - "talk" : talk to a character in the room
 - "listup" : listup items the player has
