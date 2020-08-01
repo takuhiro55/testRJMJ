@@ -19,7 +19,6 @@ public class Bathroom implements Room{
     private EnumMap<DirectionEnum, RoomNameEnum> roomNeighbors = new EnumMap<>(DirectionEnum.class);
     private Player player;
     private Scanner scanner;
-    private int testCount = 0;
 
     /**
      * Constructor:

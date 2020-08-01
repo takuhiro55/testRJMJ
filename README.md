@@ -5,22 +5,30 @@ I took Character classes and AsciiArt from the original RJMJ and modified them s
 
 
 Some features:
-- Room arrangement are more easily changeable
-- The location of characters are changeable
-- Each class can take care actions such as "talkTo()" or "moveTo()" though interface, Game loop is simplified
+- Room arrangement is more easily changeable
+- The locations of characters are changeable
+- Since each room class can take care actions such as "talkToCharacter" or "leaveRoomTo" though interface, Game loop is simplified
 - Each class is more easily testable because they are loosely coupled
-- If you talk to same character more than one timem, the message is changed
+- If you talk to the same character more than one time, the message is changed
 
 
 How it works:
-Please look at "Client" in "com.test"
-1. Specify neighbor rooms with EnumMap<Direction, RoomName> 
-  -> Both "Direction" and "RoomName" are Enum
+1. Specify neighbor rooms with EnumMap<DirectionEnum, RoomNameEnum> 
+  -> Both "DirectionEnum" and "RoomNameEnum" are Enum
   In this project, I made 2 directions "LEFT" and "RIGHT" to move for testing
-2. Store instances of Room into "RoomName" Enum
+2. Store instances of Room into "RoomNameEnum"
   When Room classes are instantiated, Character and neighbor rooms are set though the constructor.
-3. Instantiate Player with initial room where the player is in when the player starts playing the game
+3. Instantiate Player with initial room where the player starts game
 
+
+How to play:
+When you go into each room, program ask you "What would you like to do?".
+Choose one word from below and type:
+- "talk" : talk to a character in the room
+- "listup" : listup items the player has
+- "left" : move to a room connected to left
+- "right" : move to a room connected to right
+- "quit" : quit the game
 
 
 Room arrangement in this project:
