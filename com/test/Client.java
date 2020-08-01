@@ -2,7 +2,6 @@ package com.test;
 
 
 import com.test.game.Game;
-import com.test.player.Player;
 
 import java.util.Scanner;
 

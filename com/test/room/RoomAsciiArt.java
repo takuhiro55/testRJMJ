@@ -1,6 +1,6 @@
 package com.test.room;
 
-import com.test.Color;
+import com.test.game.Color;
 
 public class RoomAsciiArt implements Color{
 

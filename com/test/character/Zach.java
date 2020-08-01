@@ -1,6 +1,6 @@
 package com.test.character;
 
-import com.test.Color;
+import com.test.game.Color;
 
 import java.util.Scanner;
 

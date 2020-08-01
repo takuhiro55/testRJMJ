@@ -1,4 +1,4 @@
-package com.test;
+package com.test.game;
 
 public interface Color {
     String ANSI_RESET = "\u001B[0m";

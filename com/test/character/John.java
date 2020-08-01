@@ -2,7 +2,7 @@ package com.test.character;
 
 //import com.rjmj.capstone.engines.MovementEngine;
 
-import com.test.Color;
+import com.test.game.Color;
 
 import java.util.Scanner;
 
