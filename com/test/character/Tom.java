@@ -1,6 +1,6 @@
 package com.test.character;
 
-import com.test.Color;
+import com.test.game.Color;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class Tom implements Character, Color {
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() throws InterruptedException {
+    public String askTheQuestionAndCollectInput(){
 
         String[] tomInput = null;
         String[] tomInput1 = {
@@ -28,38 +28,38 @@ public class Tom implements Character, Color {
                 ANSI_RESET
         };
 
-        if (!talkedOnce){
-            tomInput = tomInput1;
-        }
-        else{
-            tomInput = tomInput2;
-        }
+        tomInput = !talkedOnce ? tomInput1:tomInput2;
 
-        for (String tom : tomInput) {
-            Thread.sleep(sleep);
-            System.out.println(tom);
+        try {
+            for (String tom : tomInput) {
+                Thread.sleep(SLEEP_DURATION);
+                System.out.println(tom);
+            }
         }
-
+        catch(Exception e){
+            somethingWentWrong(e);
+            System.out.println("Look for \"Thread.sleep(sleep);\"");
+        }
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
         return getQuestionAnswer();
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
-        String result = "";
+    public QAEnum processQuestionAnswer(String questionAnswer) {
+        QAEnum result = null;
         if (!talkedOnce) {
             if (questionAnswer.toUpperCase().equals("B")) {
                 talkedOnce = true;
-                System.out.println("Correct");
-                result = getItem();
-            } else {
-                System.out.println("Incorrect, please try again.");
+                result = QAEnum.CORRECT;
             }
+            else {
+                result = QAEnum.INCORRECT;
+            }
+            System.out.println(result.name());
         }
         else{
-            // Work around, so that you can take next actions -> result == "" recognizes as incorrect answer
-            result = getItem();
+            result = QAEnum.PASS;
         }
         return result;
     }

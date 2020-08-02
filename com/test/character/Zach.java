@@ -1,6 +1,6 @@
 package com.test.character;
 
-import com.test.Color;
+import com.test.game.Color;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class Zach implements Character, Color {
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() throws InterruptedException {
+    public String askTheQuestionAndCollectInput() {
         String[] zachInput = null;
         String[] zachInput1 = {
                 ANSI_CYAN,
@@ -25,38 +25,38 @@ public class Zach implements Character, Color {
                 "Zach: \" I just bought a ticket for traveling with Dragon2. Would you like to come with me?",
                 ANSI_RESET
         };
-        if (!talkedOnce){
-            zachInput = zachInput1;
-        }
-        else{
-            zachInput = zachInput2;
-        }
 
-        for (String zach : zachInput) {
-            Thread.sleep(sleep);
-            System.out.println(zach);
-        }
+        zachInput = !talkedOnce ? zachInput1 : zachInput2;
 
+        try {
+            for (String zach : zachInput) {
+                Thread.sleep(SLEEP_DURATION);
+                System.out.println(zach);
+            }
+        }
+        catch(Exception e){
+            somethingWentWrong(e);
+            System.out.println("Look for \"Thread.sleep(sleep);\"");
+        }
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
         return getQuestionAnswer();
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
-        String result = "";
+    public QAEnum processQuestionAnswer(String questionAnswer) {
+        QAEnum result = null;
         if (!talkedOnce) {
             if (questionAnswer.toUpperCase().equals("A")) {
                 talkedOnce = true;
-                System.out.println("Correct");
-                result = getItem();
+                result = QAEnum.CORRECT;
             } else {
-                System.out.println("Incorrect, please try again.");
+                result = QAEnum.INCORRECT;
             }
+            System.out.println(result.name());
         }
         else{
-            // Work around, so that you can take next actions -> result == "" recognizes as incorrect answer
-            result = getItem();
+            result = QAEnum.PASS;
         }
         return result;
     }

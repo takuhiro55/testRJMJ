@@ -1,6 +1,6 @@
 package com.test.layout;
 
-public enum Direction {
+public enum DirectionEnum {
     LEFT,
     RIGHT
 }

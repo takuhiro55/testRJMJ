@@ -2,7 +2,7 @@ package com.test.character;
 
 //import com.rjmj.capstone.engines.MovementEngine;
 
-import com.test.Color;
+import com.test.game.Color;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class John implements Character, Color {
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() throws InterruptedException {
+    public String askTheQuestionAndCollectInput() {
         String[] johnInput = {
                 ANSI_CYAN,
                 "John: \"What is AWS' DNS Service?\"",
@@ -21,20 +21,25 @@ public class John implements Character, Color {
                 ANSI_RESET
         };
 
-        for (String john : johnInput) {
-            Thread.sleep(sleep);
-            System.out.println(john);
+        try {
+            for (String john : johnInput) {
+                Thread.sleep(SLEEP_DURATION);
+                System.out.println(john);
+            }
         }
-
+        catch(Exception e){
+            somethingWentWrong(e);
+            System.out.println("Look for \"Thread.sleep(sleep);\"");
+        }
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
         return getQuestionAnswer();
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
+    public QAEnum processQuestionAnswer(String questionAnswer) {
 //        MovementEngine movementEngine = new MovementEngine();
-        String result = "";
+        QAEnum result = null;
 //        if (questionAnswer.toUpperCase().equals("C")) {
 //            movementEngine.clearScreen();
 //            System.out.println("Correct");

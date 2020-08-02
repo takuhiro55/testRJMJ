@@ -1,6 +1,6 @@
 package com.test.character;
 
-import com.test.Color;
+import com.test.game.Color;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class Nelly implements Character, Color {
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() throws InterruptedException {
+    public String askTheQuestionAndCollectInput(){
 
         String[] nellyInput = null;
 
@@ -27,28 +27,35 @@ public class Nelly implements Character, Color {
                 ANSI_RESET
         };
 
-        if (!talkedOnce){
-            nellyInput = nellyInput1;
-        }
-        else{
-            nellyInput = nellyInput2;
-        }
+        nellyInput = !talkedOnce ? nellyInput1: nellyInput2;
 
-        for (String nelly : nellyInput) {
-            Thread.sleep(sleep);
-            System.out.println(nelly);
+        try {
+            for (String nelly : nellyInput) {
+                Thread.sleep(SLEEP_DURATION);
+                System.out.println(nelly);
+            }
         }
-
+        catch(Exception e){
+            somethingWentWrong(e);
+            System.out.println("Look for \"Thread.sleep(sleep);\"");
+        }
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
         return getQuestionAnswer();
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
+    public QAEnum processQuestionAnswer(String questionAnswer) {
         System.out.println(ANSI_CYAN + "Good Luck!" + ANSI_RESET);
-        talkedOnce = true;
-        return getItem();
+        QAEnum result = null;
+        if (!talkedOnce){
+            result = QAEnum.CORRECT;
+            talkedOnce = true;
+        }
+        else{
+            result = QAEnum.PASS;
+        }
+        return result;
     }
 
     public String getQuestionAnswer() {

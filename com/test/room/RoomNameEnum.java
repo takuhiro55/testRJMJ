@@ -1,6 +1,6 @@
 package com.test.room;
 
-public enum RoomName {
+public enum RoomNameEnum {
     KITCHEN(null),
     LAB(null),
     BATHROOM(null);
@@ -10,7 +10,7 @@ public enum RoomName {
     private Room roomInstance;
 
     // Constructor
-    RoomName(Room roomInstance){
+    RoomNameEnum(Room roomInstance){
         this.roomInstance = roomInstance;
     }
 
